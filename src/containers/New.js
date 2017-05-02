@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 
-//import { createRecipe } from ../actions/actions;
+import { createRecipe } from '../actions/actions';
 
 class NewRecipe extends Component {
   onSubmit(values) {
     //this = component
     console.log(values);
+    this.props.createRecipe(values);
+
   }
   render() {
     const { handleSubmit } = this.props;
@@ -30,8 +32,11 @@ class NewRecipe extends Component {
     );
   }
 }
+//need to use both reduxForm and Connect.
 NewRecipe = reduxForm({
   form: 'NewRecipe'
-})(NewRecipe);
+})(
+  connect(null, { createRecipe })(NewRecipe)
+);
 
 export default NewRecipe;
