@@ -6,19 +6,22 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 // import Recipe from './Recipe';
-// import Ingredients from '../components/ingredients';
+import Ingredients from '../components/ingredients';
 
 class RecipeList extends Component {
   renderList() {
-    console.log(this.props.recipes);
-
     return (
       this.props.recipes.map(recipe =>
-        <li>{recipe.name}</li>
-        
-
-      )
-    )
+        <li key={recipe.id}>
+          {recipe.name}
+          <ul>
+            <Ingredients
+              ingredients={recipe.ingredients}
+            />
+          </ul>
+        </li>
+      )//map
+    )//return renderlist
   }
   render() {
     return <ul>{this.renderList()}</ul>
