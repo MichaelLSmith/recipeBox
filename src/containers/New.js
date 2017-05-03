@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
+import shortid from 'shortid';
 
-import { createRecipe } from '../actions/actions';
+import { createRecipe, getRecipes } from '../actions/actions';
+import { stringToArray } from '../helpers/functions';
 
 class NewRecipe extends Component {
   onSubmit(values) {
     //this = component
     console.log(values);
-    this.props.createRecipe(values);
+    values.id = shortid.generate();
+    this.props.createRecipe(values, stringToArray);
 
   }
   render() {
