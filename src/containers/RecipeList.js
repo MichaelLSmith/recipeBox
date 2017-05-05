@@ -28,13 +28,12 @@ class RecipeList extends Component {
       <div>
         {recipes.map(recipe =>
           {return (
-            <ul>
-              <li>{recipe.recipeName}</li>
+            <div>
+              <li key={recipe.id}>{recipe.recipeName}</li>
               <Ingredients
                 ingredients={recipe.ingredients}
-                key={recipe.id}
               />
-            </ul>
+            </div>
           )}
         )}
       </div>
