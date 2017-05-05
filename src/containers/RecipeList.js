@@ -18,24 +18,27 @@ class RecipeList extends Component {
     this.props.getRecipes();
   }
   renderList() {
+    console.log('this.props in renderList()');
+    console.log(this.props);
+    const normRecipes = this.props.recipes;
     const { recipes } = this.props;
     console.log(recipes);
-    if(recipes[0] === null) {
-      return <div>Add a recipe - turn this into a button</div>
-    }
-    console.log(recipes);
+    if(!recipes) { return <div>Loading...</div>}
     return (
-      recipes.map(recipe =>
-        <li key={shortid.generate()}>
-          {recipe.recipeName}
-          <ul>
-            <Ingredients
-              ingredients={recipe.ingredients}
-            />
-          </ul>
-        </li>
-      )//map
-    )//return renderlist
+      <div>
+        {recipes.map(recipe =>
+          {return (
+            <ul>
+              <li>{recipe.recipeName}</li>
+              <Ingredients
+                ingredients={recipe.ingredients}
+                key={recipe.id}
+              />
+            </ul>
+          )}
+        )}
+      </div>
+    )//return renderList
   }
   render() {
     console.log(this.props);
@@ -44,8 +47,6 @@ class RecipeList extends Component {
 }
 function mapStateToProps(state) {
   console.log(state.recipes);
-  return {
-    recipes: state.recipes
-  }
+  return state.recipes;
 }
 export default connect(mapStateToProps, { getRecipes })(RecipeList);

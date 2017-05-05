@@ -1,42 +1,47 @@
 import _ from 'lodash';
 
 export const CREATE_RECIPE = 'create_recipe';
-export const GET_RECIPIES = 'get_recipes';
+export const GET_RECIPES = 'get_recipes';
 
 export function createRecipe(values, stringToArray) {
   let {ingredients} = values;
-  //ingredients is created as a string, must be an array.
   const arr = stringToArray(ingredients);
   values.ingredients = arr;
 
-  //have to have localStorage look like:
-  /*
-  {data: [{obj1}, {obj2}]}
-  */
   let data = localStorage.getItem('data');
-  if(data == null) {
-    localStorage.setItem('data', '');
-  }
   console.log(data);
 
-  // values = JSON.stringify(values);
-  // localStorage.setItem('data', values);
-  // let request = localStorage.getItem('data');
-  // request = JSON.parse(request);
-  // console.log(request);
+  if(data == null) {
+    localStorage.setItem('data', '[]');
+    data = localStorage.getItem('data');
+  }
+  data = JSON.parse(data);
+  console.log(data);
+  data.push(values);
 
-  //in the blogApp request on making new post is the promise returned from server.
+  data = JSON.stringify(data);
+  console.log('stringify');
+  console.log(data);
+  localStorage.setItem('data', data);
+
+  let request = localStorage.getItem('data');
+  request = JSON.parse(request);
+  console.log(request);
+
     return {
       type: CREATE_RECIPE,
-      payload: values
+      payload: request
     }
 }
 export function getRecipes() {
-  const storage = localStorage.getItem('data');
-  const request = JSON.parse(storage);
+  let request = localStorage.getItem('data');
+
+  console.log(request);
+  request = JSON.parse(request);
+  console.log('request from localStorage parsed');
   console.log(request);
   return {
-    type: GET_RECIPIES,
+    type: GET_RECIPES,
     payload: request
   }
 }
