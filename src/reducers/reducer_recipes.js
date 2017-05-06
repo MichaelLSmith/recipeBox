@@ -21,16 +21,8 @@ export default function(state = {}, action) {
     }
 
     case CREATE_RECIPE:
-    if(state[0] === null){
-      return [ action.payload ]
-    }
-    else {
-      return [ ...state, action.payload ]
-    }
+    // if(state[0] === null){
+      return { ...state, recipes: action.payload }
   }
   return state;
-  //  [
-  //   { id: 1, name: "Pumpkin Pie", ingredients: ['mush', 'spices', 'crust'] },
-  //   { id: 2, name: "tea", ingredients: ['water', 'leaves'] }
-  // ]
 }

@@ -12,7 +12,7 @@ class NewRecipe extends Component {
     console.log(values);
     values.id = shortid.generate();
     this.props.createRecipe(values, stringToArray);
-
+    
   }
   render() {
     const { handleSubmit } = this.props;

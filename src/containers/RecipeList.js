@@ -23,10 +23,9 @@ class RecipeList extends Component {
     const normRecipes = this.props.recipes;
     const { recipes } = this.props;
     console.log(recipes);
-    if(!recipes) { return <div>Loading...</div>}
+    if(!recipes) { return <div>Add a recipe. Turn this into a button</div>}
     return (
-      <div>
-        {recipes.map(recipe =>
+        recipes.map(recipe =>
           {return (
             <div>
               <li key={recipe.id}>{recipe.recipeName}</li>
@@ -35,8 +34,7 @@ class RecipeList extends Component {
               />
             </div>
           )}
-        )}
-      </div>
+        )
     )//return renderList
   }
   render() {
