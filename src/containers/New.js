@@ -4,15 +4,14 @@ import { connect } from 'react-redux';
 import shortid from 'shortid';
 
 import { createRecipe, getRecipes } from '../actions/actions';
-import { stringToArray } from '../helpers/functions';
 
 class NewRecipe extends Component {
   onSubmit(values) {
     //this = component
     console.log(values);
     values.id = shortid.generate();
-    this.props.createRecipe(values, stringToArray);
-    
+    this.props.createRecipe(values);
+
   }
   render() {
     const { handleSubmit } = this.props;
