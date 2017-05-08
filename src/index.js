@@ -4,13 +4,26 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import ReduxPromise from 'redux-promise';
 
+import { saveState, loadState } from './helpers/localStorage';
 import App from './components/app';
 import reducers from './reducers/reducers';
 
-const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
+const persistedState = loadState();
+
+const store = createStore(
+  reducers,
+  persistedState
+  //applyMiddleware()
+);
+
+store.subscribe(() => {
+  saveState(store.getState());
+});
+
+console.log(store.getState());
 
 ReactDOM.render(
-  <Provider store={createStoreWithMiddleware(reducers)}>
+  <Provider store={store}>
     <App />
   </Provider>
   , document.querySelector('.container'));

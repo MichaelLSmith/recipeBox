@@ -8,7 +8,7 @@ import { createRecipe, getRecipes } from '../actions/actions';
 class NewRecipe extends Component {
   onSubmit(values) {
     //this = component
-    console.log(values);
+    console.log('values in onSubmit', values);
     values.id = shortid.generate();
     this.props.createRecipe(values);
 
