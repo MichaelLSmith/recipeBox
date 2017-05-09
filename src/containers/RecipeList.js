@@ -6,12 +6,16 @@ import { connect } from 'react-redux';
 import shortid from 'shortid';
 import _ from 'lodash';
 
+
 // import Recipe from './Recipe';
 import Ingredients from '../components/Ingredients';
 import { getRecipes, deleteRecipe, editRecipe } from '../actions/actions';
+import ModalContainer from '../components/modal-container';
 
 class RecipeList extends Component {
-  componentDidMount() {
+  handleDelete(id){
+    console.log('id in handleDelete', id);
+    this.props.deleteRecipe(id);
   }
   renderList() {
     console.log('this.props in renderList()', this.props);
@@ -25,39 +29,43 @@ class RecipeList extends Component {
         </div>
       )
     }
+    //separate each recipe into a separate component
     return (
-      <div>recipes here
-        {/* {_.map(recipes, recipe => {
-          console.log(recipe);
+        _.map(recipes, recipe => {
+          // console.log('recipe in map', recipe);
           return (
-            <div>
-              <li key={recipe.id}>{recipe.recipeName}</li>
+            <div key={recipe.id}>
+              <li>{recipe.recipeName}</li>
               <Ingredients
                 ingredients={recipe.ingredients}
               />
               <button
                 className="btn btn-danger"
-                onSubmit={this.props.deleteRecipe(recipe.id)}
+                onClick={() => this.handleDelete(recipe.id)}
               >
                 Delete
-            </button>
-            <button
-              className="btn btn-default"
-              onSubmit={this.props.editRecipe(recipe.id)}
-              //this needs to open modal edit form.
-            >
-              Edit
-          </button>
+              </button>
+            {/* this needs to open modal edit form. */}
+              <button
+                className="btn btn-default"
+                //onSubmit: needs to open modal. It could be another instance of New.js.
+              >
+                Edit</button>
             </div>
-          )}
-        )}//map */}
-          <button className="btn btn-default">Add Recipe</button>
-        </div>
-    )//return renderList
+          )}//return map
+        )//map
+
+    );//return renderList
   }
   render() {
     // console.log(this.props);
-    return <ul>{this.renderList()}</ul>
+    return (
+      <div>
+        <ul>{this.renderList()}</ul>
+        <button>Add Recipe</button>
+        <ModalContainer />
+      </div>
+    );
   }
 }
 function mapStateToProps(state) {
