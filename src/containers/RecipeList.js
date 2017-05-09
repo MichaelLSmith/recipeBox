@@ -14,12 +14,11 @@ class RecipeList extends Component {
   componentDidMount() {
   }
   renderList() {
-    // console.log('this.props in renderList()');
-    // console.log(this.props);
+    console.log('this.props in renderList()', this.props);
     const { recipes } = this.props;
-    // console.log('recipes in renderList():',recipes);
-    // console.log( Object.keys(recipes).length );
-    if(!recipes) {
+    console.log('recipes in renderList():',recipes);
+    console.log( Object.keys(recipes).length );
+    if(Object.keys(recipes).length === 0) {
       return (
         <div>You don't have any recipes! <br/>
           <button className="btn btn-default">Add Recipe</button>

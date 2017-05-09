@@ -27,9 +27,9 @@ export function deleteRecipe(id) {
   }
 }
 export function editRecipe(values) {
-  let { ingredients } = values;
-  ingredients = stringToArray(ingredients);
-  values.ingredients = ingredients;
+  // let { ingredients } = values;
+  // ingredients = stringToArray(ingredients);
+  // values.ingredients = ingredients;
   return {
     type: EDIT_RECIPE,
     payload: values

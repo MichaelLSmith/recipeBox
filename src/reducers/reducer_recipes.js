@@ -18,9 +18,9 @@ export default function(state = {}, action) {
       return _.omit(state, [action.payload]);
 
     case EDIT_RECIPE:
-      const edited = Object.assign(state, action.payload);
-      console.log(edited);
-      return edit
+      // const edited = Object.assign(state, action.payload);
+      // console.log(edited);
+      return state;
   }
   return state;
 }
