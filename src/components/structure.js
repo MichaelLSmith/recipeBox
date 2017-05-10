@@ -1,7 +1,7 @@
 <App>
   <div>
-    Empty Recipe Obj -->
-    Just display Add Recipe Button
+    if Empty Recipe Obj -->
+      Just display Add Recipe Button
     <ul>
       {/* map over recipes obj */}
       <li>
