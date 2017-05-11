@@ -1,17 +1,10 @@
-//this will be a container. It will render all the recipes as a list.
-//the ingredients are from a separate component that renders the ingredients list.
-
-//this will replace App.js and follow structure.js
-
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import shortid from 'shortid';
 import _ from 'lodash';
 import { Button, ButtonToolbar, ButtonGroup } from 'react-bootstrap';
 
-
-// import Recipe from './Recipe';
-import Ingredients from '../components/Ingredients';
+import Recipe from '../components/Recipe';
 import { getRecipes, deleteRecipe, editRecipe } from '../actions/actions';
 import ModalWrapper from '../components/Modal-Wrapper';
 
@@ -24,6 +17,10 @@ class App extends Component {
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
   }
+  handleDelete(id){
+    console.log('id in handleDelete', id);
+    this.props.deleteRecipe(id);
+  }
 
   openModal() {
     this.setState({modalIsOpen: true});
@@ -32,10 +29,28 @@ class App extends Component {
   closeModal() {
     this.setState({modalIsOpen: false});
   }
+  renderList(recipes) {
+    return (
+      _.map(recipes, recipe =>
+        <div key={recipe.id}>
+          <Recipe recipe={recipe} />
+        <ButtonToolbar>
+          <Button 
+            bsStyle="danger"
+            onClick={() => this.handleDelete(recipe.id)}
+          >
+            Delete
+          </Button>
+          <Button>Edit</Button>
+        </ButtonToolbar>
+        </div>
+      )
+  )}
 
   render() {
     const { recipes } = this.props;
-    if(Object.key(recipes).length === 0) {
+    console.log('recipes.length', Object.keys(recipes).length);
+    if(Object.keys(recipes).length === 0) {
       return (
         <div>
           You don't have any Recipes! <br/>
@@ -45,26 +60,23 @@ class App extends Component {
         </div>
       );
     }
-    <ul>
-      {_.map(recipes, recipe) =>
-        console.log('recipe in map', recipe);
-        return <Recipe recipe={recipe} />;
-      }
-    </ul>
-    <Button
-      bsStyle="primary"
-      onClick={this.openModal}
-    >
-      Open Modal
-    </Button>
-    <ModalWrapper
-      isOpen={this.state.modalIsOpen}
-      onCloseRequest={this.closeModal}
-    />
-
+    return (
+      <div>
+        {this.renderList(recipes)}
+        <Button
+          bsStyle="primary"
+          onClick={this.openModal}
+        >
+          Add Recipe
+        </Button>
+        <ModalWrapper
+          isOpen={this.state.modalIsOpen}
+          onCloseRequest={this.closeModal}
+        />
+        </div>
+    );
   }//render()
 }
-
 
 function mapStateToProps(state) {
   // console.log(state);

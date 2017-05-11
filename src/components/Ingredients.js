@@ -11,11 +11,6 @@ function Ingredients(props) {
       <li key={key}>{ingredient}</li>
     )}
   )
-  return (
-    <div>
-      <h3>Ingredients</h3>
-      <ul>{ingredientsList}</ul>
-    </div>
-  )
+  return <ul>{ingredientsList}</ul>
 }
 export default Ingredients;
