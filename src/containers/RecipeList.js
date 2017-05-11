@@ -1,6 +1,8 @@
 //this will be a container. It will render all the recipes as a list.
 //the ingredients are from a separate component that renders the ingredients list.
 
+//this could become App.js
+
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import shortid from 'shortid';
@@ -10,7 +12,7 @@ import _ from 'lodash';
 // import Recipe from './Recipe';
 import Ingredients from '../components/Ingredients';
 import { getRecipes, deleteRecipe, editRecipe } from '../actions/actions';
-import ModalContainer from '../components/modal-container';
+import ModalWrapper from '../components/Modal-Wrapper';
 
 class RecipeList extends Component {
   handleDelete(id){
@@ -63,7 +65,7 @@ class RecipeList extends Component {
       <div>
         <ul>{this.renderList()}</ul>
         <button>Add Recipe</button>
-        <ModalContainer />
+        <ModalWrapper />
       </div>
     );
   }

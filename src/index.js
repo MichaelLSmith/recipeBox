@@ -5,7 +5,7 @@ import { createStore, applyMiddleware } from 'redux';
 import ReduxPromise from 'redux-promise';
 
 import { saveState, loadState } from './helpers/localStorage';
-import App from './components/app';
+import App from './components/App';
 import reducers from './reducers/reducers';
 
 const persistedState = loadState();

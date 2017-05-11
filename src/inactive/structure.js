@@ -1,4 +1,4 @@
-<App>
+<App> Container
   <div>
     if Empty Recipe Obj -->
       Just display Add Recipe Button
@@ -9,7 +9,14 @@
       </li>
       {/* map end */}
     </ul>
-    <button onClick={open modal form instance}>Add Recipe</button>
+    <button>
+      {opens modal}
+      Add Recipe
+    </button>
+    <ModalWrapper
+      props={what needs to be passed to ModalWrapper? The RecipeForm is a container. So it will be connected to store for data}
+    />
+
   </div>
 </App>
 
@@ -29,6 +36,7 @@ Recipe Component:
 
   Ingredients Component: see actual file. I don't think it's going to change
 
-  Modal Container Component:
+  Modal Wrapper Component:
+    button to open modal
     Modal --> SubComponents
       RecipeForm
