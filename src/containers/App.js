@@ -23,6 +23,7 @@ class App extends Component {
   }
 
   openModal() {
+    console.log('openModal()');
     this.setState({modalIsOpen: true});
   }
 
@@ -35,7 +36,7 @@ class App extends Component {
         <div key={recipe.id}>
           <Recipe recipe={recipe} />
         <ButtonToolbar>
-          <Button 
+          <Button
             bsStyle="danger"
             onClick={() => this.handleDelete(recipe.id)}
           >
@@ -48,15 +49,23 @@ class App extends Component {
   )}
 
   render() {
+    console.log(this.state);
     const { recipes } = this.props;
     console.log('recipes.length', Object.keys(recipes).length);
     if(Object.keys(recipes).length === 0) {
       return (
         <div>
-          You don't have any Recipes! <br/>
-          <button>
-            Add Recipes (this will be a react-bootstrap button)
-          </button>
+          You don't have any Recipes. <br/>
+          <Button
+            bsStyle="primary"
+            onClick={this.openModal}
+          >
+            Add a Recipe!
+          </Button>
+          <ModalWrapper
+            isOpen={this.state.modalIsOpen}
+            onCloseRequest={this.closeModal}
+          />
         </div>
       );
     }
