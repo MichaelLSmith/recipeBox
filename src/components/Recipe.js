@@ -7,7 +7,7 @@ import Ingredients from './Ingredients';
 
 function Recipe(props) {
   const { recipe } = props;
-  console.log('recipe in recipe Component', recipe);
+  // console.log('recipe in recipe Component', recipe);
   return (
     <div>
       <h2>{recipe.recipeName}</h2>

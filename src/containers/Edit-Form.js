@@ -3,23 +3,28 @@ import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import shortid from 'shortid';
 
-import { createRecipe, getRecipes } from '../actions/actions';
+import { createRecipe, getRecipes, editRecipe } from '../actions/actions';
 
 class RecipeForm extends Component {
-  onSubmit(values) {
+  componentDidMount() {
+    this.props.initialize(this.props.recipe)
+  }
+  onSubmit(values, formType) {
     console.log('values in onSubmit', values);
-    values.id = shortid.generate();
-    this.props.createRecipe(values);
-
+    //formType will indicate whether it's an EDIT or ADD Recipe. Have an if to call either createRecipe or editRecipe
+    //For ADD:
+      // values.id = shortid.generate();
+      // this.props.createRecipe(values);
+    //For EDIT:
+    this.props.editRecipe(values);
   }
   render() {
+    console.log(this.props);
     const { handleSubmit } = this.props;
     return (
-      <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-
-{/* -------- different for EDIT and ADD */}
-        <h3>Create New Recipe</h3>
-{/* -------- different for EDIT and ADD */}
+      <form
+        onSubmit={handleSubmit(this.onSubmit.bind(this))}
+        >
         <div>
           <label htmlFor="recipeName">Recipe Name</label>
           <Field name="recipeName" component="input" type="text" />

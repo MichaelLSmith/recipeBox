@@ -13,7 +13,7 @@ class App extends Component {
   //from: https://github.com/reactjs/react-modal#examples
   constructor(props) {
     super(props);
-    this.state = { modalIsOpen: false }
+    this.state = { modalIsOpen: false, recipe: undefined }
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
   }
@@ -22,9 +22,10 @@ class App extends Component {
     this.props.deleteRecipe(id);
   }
 
-  openModal() {
+  openModal(recipe) {
+    //this 'recipe' variable points to a component-level state copy of the recipe as rendered by the Recipe Component. It's values will be used to populate the EDIT form. These values will then be merged with the App-State copy of the recipe to update the recipe in the entire app.
     console.log('openModal()');
-    this.setState({modalIsOpen: true});
+    this.setState({modalIsOpen: true, recipe: recipe });
   }
 
   closeModal() {
@@ -42,7 +43,11 @@ class App extends Component {
           >
             Delete
           </Button>
-          <Button>Edit</Button>
+          <Button
+            onClick={() => this.openModal(recipe)}
+          >
+            Edit
+          </Button>
         </ButtonToolbar>
         </div>
       )
@@ -81,6 +86,7 @@ class App extends Component {
         <ModalWrapper
           isOpen={this.state.modalIsOpen}
           onCloseRequest={this.closeModal}
+          recipe={this.state.recipe}
         />
         </div>
     );

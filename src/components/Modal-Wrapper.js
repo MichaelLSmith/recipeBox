@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Button, ButtonToolbar, Modal } from 'react-bootstrap';
 
 import RecipeForm from '../containers/Form';
+import EditForm from '../containers/Edit-Form';
 
 export default class ModalWrapper extends Component {
   //props:
@@ -15,10 +16,13 @@ export default class ModalWrapper extends Component {
                onHide={this.props.onCloseRequest}
         >
           <Modal.Header>
+            {/* check if EDIT OR ADD and then print out different title: */}
             <Modal.Title>Create New Recipe or Edit Recipe??</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <RecipeForm />
+            <EditForm
+              recipe={this.props.recipe}
+            />
           </Modal.Body>
           <Modal.Footer>
             <Button onClick={this.props.onCloseRequest}>Close</Button>
