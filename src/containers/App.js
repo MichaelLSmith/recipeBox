@@ -13,7 +13,11 @@ class App extends Component {
   //from: https://github.com/reactjs/react-modal#examples
   constructor(props) {
     super(props);
-    this.state = { modalIsOpen: false, recipe: undefined }
+      this.state = {
+        modalIsOpen: false,
+        recipe: undefined,
+        buttonType: undefined
+      }
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
   }
@@ -21,11 +25,19 @@ class App extends Component {
     console.log('id in handleDelete', id);
     this.props.deleteRecipe(id);
   }
-
-  openModal(recipe) {
-    //this 'recipe' variable points to a component-level state copy of the recipe as rendered by the Recipe Component. It's values will be used to populate the EDIT form. These values will then be merged with the App-State copy of the recipe to update the recipe in the entire app.
+  onEditClick(recipe, buttonType) {
+    console.log('buttonType in onEditClick()', buttonType);
+    this.openModal();
+    this.setState({buttonType: buttonType, recipe: recipe});
+  }
+  onAddClick(buttonType) {
+    console.log(buttonType);
+    this.openModal();
+    this.setState({buttonType: buttonType});
+  }
+  openModal() {
     console.log('openModal()');
-    this.setState({modalIsOpen: true, recipe: recipe });
+    this.setState({ modalIsOpen: true });
   }
 
   closeModal() {
@@ -44,7 +56,7 @@ class App extends Component {
             Delete
           </Button>
           <Button
-            onClick={() => this.openModal(recipe)}
+            onClick={() => this.onEditClick(recipe, 'EDIT')}
           >
             Edit
           </Button>
@@ -63,13 +75,14 @@ class App extends Component {
           You don't have any Recipes. <br/>
           <Button
             bsStyle="primary"
-            onClick={this.openModal}
+            onClick={() => this.onAddClick('ADD')}
           >
             Add a Recipe!
           </Button>
           <ModalWrapper
             isOpen={this.state.modalIsOpen}
             onCloseRequest={this.closeModal}
+            buttonType={this.state.buttonType}
           />
         </div>
       );
@@ -79,7 +92,7 @@ class App extends Component {
         {this.renderList(recipes)}
         <Button
           bsStyle="primary"
-          onClick={this.openModal}
+          onClick={() => this.onAddClick('ADD')}
         >
           Add Recipe
         </Button>
@@ -87,6 +100,7 @@ class App extends Component {
           isOpen={this.state.modalIsOpen}
           onCloseRequest={this.closeModal}
           recipe={this.state.recipe}
+          buttonType={this.state.buttonType}
         />
         </div>
     );

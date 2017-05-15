@@ -1,31 +1,47 @@
 import React, { Component } from 'react';
 import { Button, ButtonToolbar, Modal } from 'react-bootstrap';
 
-import RecipeForm from '../containers/Form';
+import RecipeForm from '../containers/Recipe-Form';
 import EditForm from '../containers/Edit-Form';
 
 export default class ModalWrapper extends Component {
   //props:
   //isOpen = bool
   //onCloseRequest = function --> closeModal as defined in App.js
+  renderTitle(type) {
+    switch(type) {
+      case 'EDIT':
+        return <Modal.Title>Edit Recipe</Modal.Title>;
+      case 'ADD': {
+        return <Modal.Title>Create New Recipe</Modal.Title>;
+      }
+    }
+  }
   render(){
     console.log(this.props);
+    const {
+      isOpen,
+      onCloseRequest,
+      buttonType,
+      recipe
+    } = this.props;
     return (
       <div>
-        <Modal show={this.props.isOpen}
-               onHide={this.props.onCloseRequest}
+        <Modal show={isOpen}
+               onHide={onCloseRequest}
         >
           <Modal.Header>
-            {/* check if EDIT OR ADD and then print out different title: */}
-            <Modal.Title>Create New Recipe or Edit Recipe??</Modal.Title>
+            {this.renderTitle(buttonType)}
           </Modal.Header>
           <Modal.Body>
-            <EditForm
-              recipe={this.props.recipe}
+            <RecipeForm
+              recipe={recipe}
+              buttonType={buttonType}
+              onCloseRequest={onCloseRequest}
             />
           </Modal.Body>
           <Modal.Footer>
-            <Button onClick={this.props.onCloseRequest}>Close</Button>
+            <Button onClick={onCloseRequest}>Close</Button>
           </Modal.Footer>
         </Modal>
       </div>
