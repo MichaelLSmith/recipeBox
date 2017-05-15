@@ -12,14 +12,46 @@ class RecipeForm extends Component {
     this.props.createRecipe(values);
 
   }
+  renderEditForm() {
+    return (
+      <form onSubmit={this.onEditSubmit.bind(this)}>
+        <div>
+          <label htmlFor="recipeName">Recipe Name</label>
+          <Field name="recipeName" component="input" type="text" />
+        </div>
+        <div>
+          <label htmlFor="ingredients">Ingredients</label>
+          <Field name="ingredients" component="textarea" />
+        </div>
+        <div>
+          <button>Cancel</button>
+          <button type="submit">Save</button>
+        </div>
+      </form>
+    );
+  }
+  renderAddForm() {
+    return (
+      <form onSubmit={handleSubmit(this.onAddSubmit.bind(this))}>
+        <div>
+          <label htmlFor="recipeName">Recipe Name</label>
+          <Field name="recipeName" component="input" type="text" />
+        </div>
+        <div>
+          <label htmlFor="ingredients">Ingredients</label>
+          <Field name="ingredients" component="textarea" />
+        </div>
+        <div>
+          <button>Cancel</button>
+          <button type="submit">Add Recipe</button>
+        </div>
+      </form>
+    );
+  }
   render() {
     const { handleSubmit } = this.props;
     return (
       <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-
-{/* -------- different for EDIT and ADD */}
-        <h3>Create New Recipe</h3>
-{/* -------- different for EDIT and ADD */}
         <div>
           <label htmlFor="recipeName">Recipe Name</label>
           <Field name="recipeName" component="input" type="text" />
