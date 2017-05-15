@@ -5,7 +5,7 @@ import shortid from 'shortid';
 import { Button, ButtonToolbar } from 'react-bootstrap';
 
 
-import { createRecipe, getRecipes } from '../actions/actions';
+import { createRecipe, getRecipes, editRecipe } from '../actions/actions';
 
 class RecipeForm extends Component {
   onCreateSubmit(values) {
@@ -13,8 +13,9 @@ class RecipeForm extends Component {
     values.id = shortid.generate();
     this.props.createRecipe(values);
   }
-  onEditSubmit() {
+  onEditSubmit(values) {
     console.log('onEditSubmit');
+    this.props.editRecipe(values);
   }
   componentDidMount() {
     const { buttonType } = this.props;
@@ -95,7 +96,7 @@ class RecipeForm extends Component {
 RecipeForm = reduxForm({
   form: 'NewRecipe'
 })(
-  connect(null, { createRecipe })(RecipeForm)
+  connect(null, { createRecipe, editRecipe })(RecipeForm)
 );
 
 export default RecipeForm;

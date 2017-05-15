@@ -18,8 +18,12 @@ export default function(state = {}, action) {
       return _.omit(state, [action.payload]);
 
     case EDIT_RECIPE:
+      const recipe = action.payload;
+      console.log('action in Edit reducer', action);
+      console.log('edited Recipe in reducer', recipe);
+      const replace = Object.assign({}, state, { [recipe.id]: recipe })
 
-      return state;
+      return replace;
   }
   return state;
 }
