@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import shortid from 'shortid';
 import _ from 'lodash';
-import { Button, ButtonToolbar, ButtonGroup } from 'react-bootstrap';
+import { Button, ButtonToolbar, ButtonGroup, Jumbotron, Panel } from 'react-bootstrap';
 
 import Recipe from '../components/Recipe';
 import { getRecipes, deleteRecipe, editRecipe } from '../actions/actions';
@@ -46,7 +46,8 @@ class App extends Component {
   renderList(recipes) {
     return (
       _.map(recipes, recipe =>
-        <div key={recipe.id}>
+
+        <Jumbotron key={recipe.id}>
           <Recipe recipe={recipe} />
         <ButtonToolbar>
           <Button
@@ -61,7 +62,7 @@ class App extends Component {
             Edit
           </Button>
         </ButtonToolbar>
-        </div>
+      </Jumbotron>
       )
   )}
 
@@ -72,7 +73,9 @@ class App extends Component {
     if(Object.keys(recipes).length === 0) {
       return (
         <div>
-          You don't have any Recipes. <br/>
+          <h3>
+            <h3>You don't have any Recipes.</h3>
+          </h3>
           <Button
             bsStyle="primary"
             onClick={() => this.onAddClick('ADD')}

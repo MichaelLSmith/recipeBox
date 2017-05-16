@@ -3,6 +3,7 @@ import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import shortid from 'shortid';
 import { Button, ButtonToolbar } from 'react-bootstrap';
+import changeCase from 'change-case';
 
 
 import { createRecipe, getRecipes, editRecipe } from '../actions/actions';
@@ -32,7 +33,7 @@ class RecipeForm extends Component {
       <form onSubmit={handleSubmit(this.onEditSubmit.bind(this))}>
         <div>
           <label htmlFor="recipeName">Recipe Name</label>
-          <Field name="recipeName" component="input" type="text" />
+          <Field name="recipeName" normalize={value => changeCase.titleCase(value)} component="input" type="text" />
         </div>
         <div>
           <label htmlFor="ingredients">Ingredients</label>
@@ -58,7 +59,7 @@ class RecipeForm extends Component {
       <form onSubmit={handleSubmit(this.onCreateSubmit.bind(this))}>
         <div>
           <label htmlFor="recipeName">Recipe Name</label>
-          <Field name="recipeName" component="input" type="text" />
+          <Field name="recipeName" normalize={value => changeCase.titleCase(value)} component="input" type="text" />
         </div>
         <div>
           <label htmlFor="ingredients">Ingredients</label>

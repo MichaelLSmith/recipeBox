@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
-import { Button, ButtonToolbar, ButtonGroup } from 'react-bootstrap';
+import { Button, ButtonToolbar, ButtonGroup, Panel } from 'react-bootstrap';
 
 import ModalWrapper from './Modal-Wrapper';
 import Ingredients from './Ingredients';
@@ -10,9 +10,10 @@ function Recipe(props) {
   // console.log('recipe in recipe Component', recipe);
   return (
     <div>
-      <h2>{recipe.recipeName}</h2>
-      <Ingredients ingredients={recipe.ingredients} />
+      <Panel header={recipe.recipeName}>
+        <Ingredients ingredients={recipe.ingredients} />
+      </Panel>
     </div>
-  );
+    );
 }
 export default Recipe;
