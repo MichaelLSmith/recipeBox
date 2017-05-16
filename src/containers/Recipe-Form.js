@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import shortid from 'shortid';
 import { Button, ButtonToolbar } from 'react-bootstrap';
 import changeCase from 'change-case';
+// import toTitleCase from 'to-title-case'
+//tried to add a normalizer, to title case names, but couldn't add space.
 
 
 import { createRecipe, getRecipes, editRecipe } from '../actions/actions';
@@ -27,13 +29,16 @@ class RecipeForm extends Component {
       this.props.initialize(this.props.recipe);
     }
   }
+
   renderEditForm() {
     const { handleSubmit, onCloseRequest } = this.props;
     return (
       <form onSubmit={handleSubmit(this.onEditSubmit.bind(this))}>
         <div>
           <label htmlFor="recipeName">Recipe Name</label>
-          <Field name="recipeName" normalize={value => changeCase.titleCase(value)} component="input" type="text" />
+          <Field
+            name="recipeName"
+            component="input" type="text" />
         </div>
         <div>
           <label htmlFor="ingredients">Ingredients</label>
@@ -59,7 +64,9 @@ class RecipeForm extends Component {
       <form onSubmit={handleSubmit(this.onCreateSubmit.bind(this))}>
         <div>
           <label htmlFor="recipeName">Recipe Name</label>
-          <Field name="recipeName" normalize={value => changeCase.titleCase(value)} component="input" type="text" />
+          <Field
+            name="recipeName"
+            component="input" type="text" />
         </div>
         <div>
           <label htmlFor="ingredients">Ingredients</label>
@@ -80,7 +87,7 @@ class RecipeForm extends Component {
     );
   }
   render() {
-    console.log('this.props in Render', this.props);
+    // console.log('this.props in Render', this.props);
     const {buttonType} = this.props;
     switch (buttonType) {
       case 'ADD':

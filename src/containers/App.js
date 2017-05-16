@@ -4,7 +4,8 @@ import shortid from 'shortid';
 import _ from 'lodash';
 import { Button, ButtonToolbar, ButtonGroup, Jumbotron, Panel } from 'react-bootstrap';
 
-import Recipe from '../components/Recipe';
+// import Recipe from '../components/Recipe';
+import Ingredients from '../components/Ingredients';
 import { getRecipes, deleteRecipe, editRecipe } from '../actions/actions';
 import ModalWrapper from '../components/Modal-Wrapper';
 
@@ -48,28 +49,30 @@ class App extends Component {
       _.map(recipes, recipe =>
 
         <Jumbotron key={recipe.id}>
-          <Recipe recipe={recipe} />
-        <ButtonToolbar>
-          <Button
-            bsStyle="danger"
-            onClick={() => this.handleDelete(recipe.id)}
-          >
-            Delete
-          </Button>
-          <Button
-            onClick={() => this.onEditClick(recipe, 'EDIT')}
-          >
-            Edit
-          </Button>
-        </ButtonToolbar>
+          <Panel header={recipe.recipeName}>
+            <Ingredients ingredients={recipe.ingredients} />
+            <ButtonToolbar>
+              <Button
+                bsStyle="danger"
+                onClick={() => this.handleDelete(recipe.id)}
+              >
+                Delete
+              </Button>
+              <Button
+                onClick={() => this.onEditClick(recipe, 'EDIT')}
+              >
+                Edit
+              </Button>
+            </ButtonToolbar>
+          </Panel>
       </Jumbotron>
       )
   )}
 
   render() {
-    console.log(this.state);
+    // console.log(this.state);
     const { recipes } = this.props;
-    console.log('recipes.length', Object.keys(recipes).length);
+    // console.log('recipes.length', Object.keys(recipes).length);
     if(Object.keys(recipes).length === 0) {
       return (
         <div>

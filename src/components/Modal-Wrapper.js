@@ -18,7 +18,7 @@ export default class ModalWrapper extends Component {
     }
   }
   render(){
-    console.log(this.props);
+    // console.log(this.props);
     const {
       isOpen,
       onCloseRequest,

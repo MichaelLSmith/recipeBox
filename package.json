@@ -38,6 +38,7 @@
     "redux": "^3.0.4",
     "redux-form": "^6.6.3",
     "redux-promise": "^0.5.3",
-    "shortid": "^2.2.8"
+    "shortid": "^2.2.8",
+    "to-title-case": "^1.0.0"
   }
 }
