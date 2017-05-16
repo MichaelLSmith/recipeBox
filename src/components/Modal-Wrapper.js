@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Button, ButtonToolbar, Modal } from 'react-bootstrap';
 
 import RecipeForm from '../containers/Recipe-Form';
-import EditForm from '../containers/Edit-Form';
 
 export default class ModalWrapper extends Component {
   //props:

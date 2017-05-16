@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import shortid from 'shortid';
 import _ from 'lodash';
-import { Button, ButtonToolbar, ButtonGroup, Jumbotron, Panel } from 'react-bootstrap';
+import { Button, ButtonToolbar, ButtonGroup, Well, Panel, Accordion } from 'react-bootstrap';
 
 // import Recipe from '../components/Recipe';
 import Ingredients from '../components/Ingredients';
@@ -40,32 +40,33 @@ class App extends Component {
     console.log('openModal()');
     this.setState({ modalIsOpen: true });
   }
-
   closeModal() {
     this.setState({modalIsOpen: false});
   }
   renderList(recipes) {
     return (
-      _.map(recipes, recipe =>
+      _.map(recipes, (recipe, index) =>
+        <div key={recipe.id}>
+          <Accordion>
+            <Panel bsStyle="success" header={recipe.recipeName} eventKey={index}>
+              <Ingredients ingredients={recipe.ingredients} />
+              <ButtonToolbar>
+                <Button
+                  bsStyle="danger"
+                  onClick={() => this.handleDelete(recipe.id)}
+                >
+                  Delete
+                </Button>
+                <Button
+                  onClick={() => this.onEditClick(recipe, 'EDIT')}
+                >
+                  Edit
+                </Button>
+              </ButtonToolbar>
+            </Panel>
 
-        <Jumbotron key={recipe.id}>
-          <Panel header={recipe.recipeName}>
-            <Ingredients ingredients={recipe.ingredients} />
-            <ButtonToolbar>
-              <Button
-                bsStyle="danger"
-                onClick={() => this.handleDelete(recipe.id)}
-              >
-                Delete
-              </Button>
-              <Button
-                onClick={() => this.onEditClick(recipe, 'EDIT')}
-              >
-                Edit
-              </Button>
-            </ButtonToolbar>
-          </Panel>
-      </Jumbotron>
+          </Accordion>
+        </div>
       )
   )}
 
@@ -95,7 +96,9 @@ class App extends Component {
     }
     return (
       <div>
-        {this.renderList(recipes)}
+        <Well>
+          {this.renderList(recipes)}
+        </Well>
         <Button
           bsStyle="primary"
           onClick={() => this.onAddClick('ADD')}

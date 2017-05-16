@@ -1,0 +1,7 @@
+.panel-title > a {
+  cursor: pointer;
+  font-size: 18px;
+}
+.panel-group {
+  margin-bottom: 5px
+}
