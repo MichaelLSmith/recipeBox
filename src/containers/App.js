@@ -69,7 +69,6 @@ class App extends Component {
         </div>
       )
   )}
-
   render() {
     // console.log(this.state);
     const { recipes } = this.props;
@@ -82,6 +81,7 @@ class App extends Component {
           </h3>
           <Button
             bsStyle="primary"
+            bsSize="large"
             onClick={() => this.onAddClick('ADD')}
           >
             Add a Recipe!
@@ -101,6 +101,7 @@ class App extends Component {
         </Well>
         <Button
           bsStyle="primary"
+          bsSize="large"
           onClick={() => this.onAddClick('ADD')}
         >
           Add Recipe

@@ -65,8 +65,10 @@ class RecipeForm extends Component {
         <div>
           <label htmlFor="recipeName">Recipe Name</label>
           <Field
+            className="form-group"
             name="recipeName"
-            component="input" type="text" />
+            component="input"
+            type="text" />
         </div>
         <div>
           <label htmlFor="ingredients">Ingredients</label>

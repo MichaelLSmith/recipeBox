@@ -1,4 +1,5 @@
 import React from 'react';
+import { ListGroup, ListGroupItem } from 'react-bootstrap';
 
 function Ingredients(props) {
   // console.log(props);
@@ -8,9 +9,15 @@ function Ingredients(props) {
   const ingredientsList = props.ingredients.map(
     (ingredient, key) => {
     return (
-      <li key={key}>{ingredient}</li>
+      <ListGroupItem key={key}>{ingredient}</ListGroupItem>
     )}
   )
-  return <ul>{ingredientsList}</ul>
+  return (
+    <ListGroup>
+      <h3 className="text-center">Ingredients</h3>
+      <hr/>
+      {ingredientsList}
+    </ListGroup>
+  );
 }
 export default Ingredients;

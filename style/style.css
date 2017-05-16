@@ -5,3 +5,6 @@
 .panel-group {
   margin-bottom: 5px
 }
+.list-group-item {
+  font-size: 16px;
+}
