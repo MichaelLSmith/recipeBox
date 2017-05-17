@@ -10,9 +10,9 @@ export default class ModalWrapper extends Component {
   renderTitle(type) {
     switch(type) {
       case 'EDIT':
-        return <Modal.Title>Edit Recipe</Modal.Title>;
+        return <Modal.Title className="text-center">Edit Recipe</Modal.Title>;
       case 'ADD': {
-        return <Modal.Title>Create New Recipe</Modal.Title>;
+        return <Modal.Title className="text-center">Create New Recipe</Modal.Title>;
       }
     }
   }

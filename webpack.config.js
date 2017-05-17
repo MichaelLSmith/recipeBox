@@ -5,7 +5,7 @@ module.exports = {
   devtool: "inline-source-map",
   output: {
     path: __dirname,
-    publicPath: '/',
+    publicPath: '/recipBox',
     filename: 'bundle.js'
   },
   module: {

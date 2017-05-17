@@ -34,15 +34,19 @@ class RecipeForm extends Component {
     const { handleSubmit, onCloseRequest } = this.props;
     return (
       <form onSubmit={handleSubmit(this.onEditSubmit.bind(this))}>
-        <div>
+        <div className="form-group">
           <label htmlFor="recipeName">Recipe Name</label>
           <Field
+            className="form-control"
             name="recipeName"
             component="input" type="text" />
         </div>
-        <div>
+        <div className="form-group">
           <label htmlFor="ingredients">Ingredients</label>
-          <Field name="ingredients" component="textarea" />
+          <Field
+            name="ingredients"
+            className="form-control"
+            component="textarea" />
         </div>
         <ButtonToolbar>
           <Button
@@ -62,17 +66,22 @@ class RecipeForm extends Component {
     const { handleSubmit, onCloseRequest } = this.props;
     return (
       <form onSubmit={handleSubmit(this.onCreateSubmit.bind(this))}>
-        <div>
+        <div className="form-group">
           <label htmlFor="recipeName">Recipe Name</label>
           <Field
-            className="form-group"
+            className="form-control"
             name="recipeName"
+            placeholder="Name of Recipe"
             component="input"
             type="text" />
         </div>
-        <div>
+        <div className="form-group">
           <label htmlFor="ingredients">Ingredients</label>
-          <Field name="ingredients" component="textarea" />
+          <Field
+            className="form-control"
+            name="ingredients"
+            placeholder="Enter Ingredients, separated, by a comma"
+            component="textarea" />
         </div>
         <ButtonToolbar>
           <Button
