@@ -72,12 +72,18 @@ class App extends Component {
   render() {
     // console.log(this.state);
     const { recipes } = this.props;
+    const Intro = () =>
+      <div>
+        <h1 className="introText text-center">Your Recipes Box</h1>
+        <hr/>
+      </div>;
     // console.log('recipes.length', Object.keys(recipes).length);
     if(Object.keys(recipes).length === 0) {
       return (
         <div>
+          <Intro />
           <h3>
-            <h3>You don't have any Recipes.</h3>
+            <h3>You don't have any Recipes yet!</h3>
           </h3>
           <Button
             bsStyle="primary"
@@ -96,6 +102,7 @@ class App extends Component {
     }
     return (
       <div>
+        <Intro />
         <Well>
           {this.renderList(recipes)}
         </Well>
