@@ -7,12 +7,12 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const isProd = process.env.NODE_ENV === 'production'
 
 // Webpack Properties
-const devtool = isProd ? 'source-map' : 'cheap-module-eval-source-map'
+const devtool = 'source-map'
 const entry = './src/index.js'
 
 const output = {
   path: path.resolve(process.cwd(), 'build'),
-  filename: 'build.js',
+  filename: '[name].[hash].js',
   publicPath: '/',
 }
 
@@ -49,6 +49,7 @@ module.exports = {
     }),
     new webpack.LoaderOptionsPlugin({
       debug: !isProd,
+      minify: true,
     }),
     new HtmlWebpackPlugin({
       inject: true,

@@ -24,6 +24,8 @@ export default function(state = {}, action) {
       const replace = Object.assign({}, state, { [recipe.id]: recipe })
 
       return replace;
+    case 'GET_RECIPES_DATA_RECEIVED':
+      return action.data
   }
   return state;
 }

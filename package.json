@@ -1,16 +1,15 @@
 {
-  "name": "redux-simple-starter",
+  "name": "recipeBox",
   "version": "1.0.0",
-  "description": "Simple starter package for Redux with React and Babel support",
+  "description": "Recipe Box",
   "main": "index.js",
-  "repository": "git@github.com:StephenGrider/ReduxSimpleStarter.git",
+  "repository": "git@github.com:MichaelLSmith/recipeBox.git",
+
   "scripts": {
-    "build": "NODE_ENV=production yarn run clean && webpack -p",
-    "clean": "rimraf dist",
-    "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
-    "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js --recursive ./test",
-    "test:watch": "npm run test -- --watch",
-    "deploy": "yarn run build && gh-pages -d dist"
+    "build": "npm run clean && cross-env NODE_ENV=production webpack -p --config webpack.prod.config",
+    "clean": "rimraf build",
+    "dev": "cross-env NODE_ENV=development webpack-dev-server",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
@@ -22,6 +21,9 @@
     "babel-preset-react": "^6.1.18",
     "chai": "^3.5.0",
     "chai-jquery": "^2.0.0",
+    "copy-webpack-plugin": "^4.0.1",
+    "cross-env": "^5.0.1",
+    "css-loader": "^0.28.4",
     "gh-pages": "^1.0.0",
     "html-webpack-plugin": "^2.28.0",
     "jquery": "^3.2.1",
@@ -29,6 +31,7 @@
     "mocha": "^3.2.0",
     "react-addons-test-utils": "^15.5.1",
     "rimraf": "^2.6.1",
+    "style-loader": "^0.18.2",
     "webpack": "^2.3.3",
     "webpack-dev-server": "^2.4.2"
   },
@@ -45,6 +48,7 @@
     "redux-form": "^6.6.3",
     "redux-promise": "^0.5.3",
     "shortid": "^2.2.8",
+    "superagent": "^3.5.2",
     "to-title-case": "^1.0.0"
   }
 }
