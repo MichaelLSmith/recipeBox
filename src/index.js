@@ -21,7 +21,6 @@ const store = createStore(
 //   saveState(store.getState());
 // });
 //
-// console.log(store.getState());
 
 ReactDOM.render(
   <Provider store={store}>
@@ -30,3 +29,4 @@ ReactDOM.render(
   , document.querySelector('.container'));
 
 store.dispatch({type: 'GET_RECIPES'});
+console.log(store.getState());

@@ -7,7 +7,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const isProd = process.env.NODE_ENV === 'production'
 
 // Webpack Properties
-const devtool = isProd ? 'source-map' : 'cheap-module-eval-source-map'
+const devtool = isProd ? 'source-map' : 'eval-source-map'
 const entry = './src/index.js'
 
 const output = {

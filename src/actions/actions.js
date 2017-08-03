@@ -2,7 +2,6 @@ import _ from 'lodash';
 import { stringToArray } from '../helpers/functions';
 
 export const CREATE_RECIPE = 'create_recipe',
-             GET_RECIPES = 'get_recipes',
              DELETE_RECIPE = 'delete_recipe',
              EDIT_RECIPE = 'edit_recipe'
 

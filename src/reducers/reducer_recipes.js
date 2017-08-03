@@ -1,11 +1,10 @@
-import { GET_RECIPES, CREATE_RECIPE, DELETE_RECIPE, EDIT_RECIPE } from '../actions/actions';
+import { CREATE_RECIPE, DELETE_RECIPE, EDIT_RECIPE } from '../actions/actions';
 
 //need to get data from localStorage into here.
 export default function(state = {}, action) {
-  // console.log('state in reducer before switch', state);
-  // console.log('action');
-  // console.log(action);
-  //might just need one - both retrieve all recipes from localStorage. Not sure because need two separate actions.
+  console.log('state in reducer before switch', state);
+  console.log('action');
+
   switch (action.type) {
     case CREATE_RECIPE:
       // console.log('action.payload:', action.payload);
@@ -24,7 +23,10 @@ export default function(state = {}, action) {
       const replace = Object.assign({}, state, { [recipe.id]: recipe })
 
       return replace;
+
     case 'GET_RECIPES_DATA_RECEIVED':
+      console.log('in GET_RECIPES_DATA_RECEIVED');
+      
       return action.data
   }
   return state;
