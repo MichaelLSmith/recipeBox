@@ -26,7 +26,7 @@ export default function(state = {}, action) {
 
     case 'GET_RECIPES_DATA_RECEIVED':
       console.log('in GET_RECIPES_DATA_RECEIVED');
-      
+      console.log('action:', action);
       return action.data
   }
   return state;

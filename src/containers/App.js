@@ -6,7 +6,7 @@ import { Button, ButtonToolbar, ButtonGroup, Well, Panel, Accordion } from 'reac
 
 // import Recipe from '../components/Recipe';
 import Ingredients from '../components/Ingredients';
-import { getRecipes, deleteRecipe, editRecipe } from '../actions/actions';
+import { deleteRecipe, editRecipe } from '../actions/actions';
 import ModalWrapper from '../components/Modal-Wrapper';
 
 class App extends Component {
@@ -18,6 +18,7 @@ class App extends Component {
         modalIsOpen: false,
         recipe: undefined,
         buttonType: undefined
+        //buttonType indicates difference between adding a New Recipe and Editing and existing one.
       }
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
@@ -48,8 +49,8 @@ class App extends Component {
       _.map(recipes, (recipe, index) =>
         <div key={recipe.id}>
           <Accordion>
-            <Panel bsStyle="success" header={recipe.recipeName} eventKey={index}>
-              <Ingredients ingredients={recipe.ingredients} />
+            <Panel bsStyle="success" header={recipe.title.rendered} eventKey={index}>
+              <Ingredients ingredients={recipe.acf.recipe_ingredients} />
               <ButtonToolbar>
                 <Button
                   bsStyle="danger"
@@ -70,21 +71,20 @@ class App extends Component {
       )
   )}
   render() {
-    // console.log(this.state);
+    console.log(this.state);
+    console.log('this.props:', this.props);
     const { recipes } = this.props;
     const Intro = () =>
       <div>
         <h1 className="introText text-center">Your Recipes Box</h1>
         <hr/>
       </div>;
-    // console.log('recipes.length', Object.keys(recipes).length);
+    console.log('recipes.length', Object.keys(recipes).length);
     if(Object.keys(recipes).length === 0) {
       return (
         <div>
           <Intro />
-          <h3>
             <h3>You don't have any Recipes yet!</h3>
-          </h3>
           <Button
             bsStyle="primary"
             bsSize="large"
@@ -128,4 +128,4 @@ function mapStateToProps(state) {
   // console.log(state);
   return state;
 }
-export default connect(mapStateToProps, { getRecipes, deleteRecipe, editRecipe })(App);
+export default connect(mapStateToProps, { deleteRecipe, editRecipe })(App);
